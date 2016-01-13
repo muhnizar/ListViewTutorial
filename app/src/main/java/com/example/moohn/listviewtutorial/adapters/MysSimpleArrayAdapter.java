@@ -1,6 +1,6 @@
 package com.example.moohn.listviewtutorial.adapters;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +10,20 @@ import android.widget.TextView;
 
 import com.example.moohn.listviewtutorial.R;
 
-/**
- * Created by moohn on 1/8/2016.
- */
+
+
 public class MysSimpleArrayAdapter extends ArrayAdapter<String> {
 
-    private final Context context;
+    private final Activity context;
     private final String[] values;
 
 
-    public MysSimpleArrayAdapter(Context context , String[] values) {
+    static class ViewHolder {
+        public TextView text;
+        public ImageView image;
+    }
+
+    public MysSimpleArrayAdapter(Activity context , String[] values) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
@@ -27,22 +31,34 @@ public class MysSimpleArrayAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-//        1. get The row view
-        View rowView = layoutInflater.inflate(R.layout.rowlayout,parent, false);
-//        2. get all the view inside the row
-        TextView textView = (TextView) rowView.findViewById(R.id.label);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-//      Default text view
-        textView.setText(values[position]);
+        View rowView = convertView;
 
+//        reuse view
+
+        if (rowView ==  null){
+
+            LayoutInflater layoutInflater = context.getLayoutInflater();
+            rowView = layoutInflater.inflate(R.layout.rowlayout,null);
+
+//          configure view holder
+            ViewHolder viewHolder =  new ViewHolder();
+            viewHolder.text = (TextView) rowView.findViewById(R.id.label);
+            viewHolder.image = (ImageView) rowView.findViewById(R.id.icon);
+
+            rowView.setTag(viewHolder);
+        }
+
+        // fill data
+        ViewHolder holder = (ViewHolder) rowView.getTag();
         String s = values[position];
-        
+
+        holder.text.setText(s);
+
         if (s.contains("Windows")) {
-            imageView.setImageResource(R.drawable.no);
+            holder.image.setImageResource(R.drawable.no);
         } else {
-            imageView.setImageResource(R.drawable.ok);
+            holder.image.setImageResource(R.drawable.ok);
         }
 
         return rowView;
