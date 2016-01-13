@@ -3,9 +3,10 @@ package com.example.moohn.listviewtutorial;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.moohn.listviewtutorial.adapters.MysSimpleArrayAdapter;
 
 public class MyListActivity extends ListActivity {
 
@@ -15,10 +16,9 @@ public class MyListActivity extends ListActivity {
         String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2" };
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                R.layout.rowlayout, R.id.label, values);
-
-        setListAdapter(adapter);
+//  Custom adapater
+        MysSimpleArrayAdapter mysSimpleArrayAdapter = new MysSimpleArrayAdapter(this, values);
+        setListAdapter(mysSimpleArrayAdapter);
     }
 
     @Override
