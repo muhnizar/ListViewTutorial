@@ -8,18 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-/**
- * Created by moohn on 1/15/2016.
- */
 public class MyListActivityMultiSelection  extends ListActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String[] data = buildData();
+        String[] data = MyListActivity.buildData();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, data);
         setListAdapter(adapter);
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
@@ -38,24 +35,5 @@ public class MyListActivityMultiSelection  extends ListActivity{
         return true;
     }
 
-    private String[] buildData() {
 
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile", "Blackberry", "WebOS",
-                "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu",
-                "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7",
-                "Max OS X", "Linux", "OS/2", "Android", "iPhone",
-                "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7",
-                "Max OS X", "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Android", "iPhone", "WindowsMobile", "Blackberry",
-                "WebOS", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2", "Ubuntu",
-                "Windows7", "Max OS X", "Linux", "OS/2" };
-
-        return values;
-    }
 }

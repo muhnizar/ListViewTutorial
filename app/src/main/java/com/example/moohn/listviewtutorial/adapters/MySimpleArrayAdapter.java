@@ -10,16 +10,14 @@ import android.widget.TextView;
 
 import com.example.moohn.listviewtutorial.R;
 
-/**
- * Created by moohn on 1/8/2016.
- */
-public class MysSimpleArrayAdapter extends ArrayAdapter<String> {
+
+public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
     private final Context context;
     private final String[] values;
 
 
-    public MysSimpleArrayAdapter(Context context , String[] values) {
+    public MySimpleArrayAdapter(Context context, String[] values) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
